@@ -1,0 +1,51 @@
+{
+	"schemaVersion": 1,
+	"id": "aileron",
+	"version": "${version}",
+	"name": "Aileron",
+	"description": "A unique and expansive Elytra overhaul",
+	"authors": [
+		"Sindercube",
+		"Team Lodestar"
+	],
+	"contact": {
+		"homepage": "https://github.com/Sindercube",
+		"sources": "https://github.com/Sindercube/Aileron-Refabricated",
+		"issues": "https://github.com/Sindercube/Aileron-Refabricated/issues"
+	},
+	"license": " LGPL-3.0",
+
+	"entrypoints": {
+		"main": [
+			"com.sindercube.aileron.Aileron"
+		],
+		"client": [
+			"com.sindercube.aileron.client.AileronClient"
+		],
+		"modmenu": [
+			"com.sindercube.aileron.client.integration.AileronModMenu"
+		]
+	},
+	"mixins": [
+		"aileron.mixins.json",
+		{
+			"config": "aileron.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"accessWidener": "aileron.accesswidener",
+
+	"custom": {
+		"loom:injected_interfaces": {
+			"net/minecraft/class_4184": [ "com/sindercube/aileron/access/AileronCamera" ],
+			"net/minecraft/class_1657": [ "com/sindercube/aileron/access/AileronPlayerEntity" ]
+		}
+	},
+
+
+	"depends": {
+		"java": ">=21",
+		"minecraft": "${minecraft_version}",
+		"fabric-api": ">=${fabric_version}"
+	}
+}

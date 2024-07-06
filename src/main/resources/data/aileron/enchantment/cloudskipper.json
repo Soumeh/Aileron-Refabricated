@@ -18,7 +18,7 @@
 					"base": 1,
 					"per_level_above_first": 1
 				},
-				"attribute": "aileron:cloud_drag_reduction",
+				"attribute": "aileron:altitude_drag_reduction",
 				"id": "aileron:enchantment.cloudskipper",
 				"operation": "add_value"
 			}

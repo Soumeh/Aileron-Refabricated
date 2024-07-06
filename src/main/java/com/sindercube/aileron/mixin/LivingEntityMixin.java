@@ -24,7 +24,7 @@ public abstract class LivingEntityMixin extends Entity {
 	private void modifyVelocity(LivingEntity entity, Vec3d vec3d) {
 		Vec3d negator = new Vec3d(1.0 / 0.9900000095367432D, 1.0, 1.0 / 0.9900000095367432D);
 
-		int cloudSkipper = (int)entity.getAttributeValue(AileronAttributes.CLOUD_DRAG_REDUCTION);
+		int cloudSkipper = (int)entity.getAttributeValue(AileronAttributes.ALTITUDE_DRAG_REDUCTION);
 
 		double fac = 0;
 		double y = entity.getY();

@@ -1,18 +1,14 @@
 package com.sindercube.aileron;
 
-import net.minecraft.util.Identifier;
+import com.sindercube.aileron.content.packets.SmokeStackDashPacket;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 
 public class AileronNetworking {
 
-	public static final Identifier LAUNCH_SMOKE_STACK_PACKET_ID = Aileron.of("launch_smoke_stack");
-	public static final Identifier SMOKE_STACK_DASH_PACKET_ID = Aileron.of("dash_smoke_stack");
-
-	public static void init() {
-//		ServerPlayNetworking.registerGlobalReceiver(SMOKE_STACK_DASH_PACKET_ID, (server, player, handler, buf, responseSender) -> Aileron.playerDashedServer(player));
+	public static void register() {
+		PayloadTypeRegistry.playC2S().register(SmokeStackDashPacket.ID, SmokeStackDashPacket.PACKET_CODEC);
+		ServerPlayNetworking.registerGlobalReceiver(SmokeStackDashPacket.ID, SmokeStackDashPacket::dash);
 	}
-
-//	public static void sendSmokeStackLaunch(ServerPlayerEntity player) {
-//		ServerPlayNetworking.send(player, LAUNCH_SMOKE_STACK_PACKET_ID, PacketByteBufs.empty());
-//	}
 
 }

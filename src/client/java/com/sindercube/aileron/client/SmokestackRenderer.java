@@ -1,8 +1,6 @@
 package com.sindercube.aileron.client;
 
 import com.sindercube.aileron.Aileron;
-import com.sindercube.aileron.registry.AileronAttachments;
-import com.sindercube.aileron.registry.AileronAttributes;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
@@ -10,7 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 
-public class AileronSmokestackRenderer {
+public class SmokestackRenderer {
 
     public record SmokestackIcon (
             Identifier containerTexture,
@@ -19,16 +17,18 @@ public class AileronSmokestackRenderer {
 
         public static final SmokestackIcon DEFAULT = new SmokestackIcon(
             Aileron.of("hud/smokestack/container"),
-            Aileron.of("hud/smokestack/full") // sprites/
+            Aileron.of("hud/smokestack/full")
         );
 
     }
 
     public static void renderSmokeStackBar(DrawContext context, RenderTickCounter t) {
-        int screenHeight = context.getScaledWindowHeight();
-        int screenWidth = context.getScaledWindowWidth();
         PlayerEntity player = MinecraftClient.getInstance().player;
         if (player == null) return;
+        if (player.isCreative()) return;
+
+        int screenHeight = context.getScaledWindowHeight();
+        int screenWidth = context.getScaledWindowWidth();
 
         int screenX = (screenWidth / 2);
         if (player.getMainArm() == Arm.LEFT) screenX -= 102;
@@ -46,14 +46,11 @@ public class AileronSmokestackRenderer {
             context.drawGuiTexture(SmokestackIcon.DEFAULT.fullTexture, screenX, spriteY, 9, 9);
         }
 
-
-
     }
 
     public static int moveAttackIndicator(int spriteX) {
         PlayerEntity player = MinecraftClient.getInstance().player;
         if (player == null) return spriteX;
-        if (!player.canChargeSmokeStack()) return spriteX;
 
         if (player.getMainArm() == Arm.LEFT) spriteX -= 9;
         else spriteX += 5;

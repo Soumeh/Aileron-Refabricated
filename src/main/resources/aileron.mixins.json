@@ -8,7 +8,8 @@
 		"CampfireBlockMixin",
 		"LivingEntityMixin",
 		"MixinFireworkRocketItem",
-		"PlayerEntityMixin"
+		"PlayerEntityMixin",
+		"ServerPlayerEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

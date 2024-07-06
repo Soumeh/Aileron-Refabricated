@@ -6,7 +6,7 @@ public interface AileronCamera {
 		return 0;
 	}
 
-	default void setPreviousEMAValue(float previousEMA) {};
+	default void setPreviousEMAValue(float previousEMA) {}
 
 	default double getEMAValue() {
 		return 0;

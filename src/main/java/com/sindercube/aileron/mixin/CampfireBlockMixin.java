@@ -1,6 +1,5 @@
 package com.sindercube.aileron.mixin;
 
-import com.sindercube.aileron.registry.AileronAttributes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.entity.Entity;
@@ -18,9 +17,9 @@ public class CampfireBlockMixin {
 	@Inject(method = "onEntityCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"), cancellable = true)
 	private void protectUsingSmokestack(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
 		if (!(entity instanceof PlayerEntity player)) return;
-		if (player.getCampfireDamageIFrames() > 0) return;
+		if (player.getCampfireDamageInvulnerability() > 0) return;
 		if (!player.isSneaking()) return;
-		if (player.getMaxSmokestacks() == 0) return;
+		if (!player.isWearingElytra()) return;
 		ci.cancel();
 	}
 

@@ -7,11 +7,12 @@ import com.sindercube.aileron.registry.AileronGamerules;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ElytraItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.tag.BlockTags;
@@ -45,6 +46,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AileronP
 	@Unique int boostTicks = 0;
 
 	@Shadow public abstract boolean isMainPlayer();
+
+	@Shadow public abstract ItemStack getEquippedStack(EquipmentSlot slot);
 
 	@Inject(method = "tick", at = @At("TAIL"))
 	public void postTick(CallbackInfo ci) {
@@ -160,7 +163,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AileronP
 				serverWorld.spawnParticles(player, ParticleTypes.SMOKE, false, self.getY(), self.getY(), self.getZ(), 120, 0.5, 0.5, 0.5, 0.4);
 			}
 
-			setCampfireDamageIFrames(20);
+			setCampfireDamageInvulnerability(20);
 
 			world.playSound(null, self.getBlockPos(), SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.PLAYERS, 0.8f, 0.8f);
 
@@ -234,19 +237,19 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AileronP
 	private static void addDefaultAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
 		DefaultAttributeContainer.Builder builder = cir.getReturnValue();
 		builder = builder
-				.add(AileronAttributes.SMOKESTACK_CHARGES, 0)
-				.add(AileronAttributes.CLOUD_DRAG_REDUCTION, 0);
+				.add(AileronAttributes.MAX_SMOKESTACKS, 0)
+				.add(AileronAttributes.ALTITUDE_DRAG_REDUCTION, 0);
 		cir.setReturnValue(builder);
 	}
 
 	@Override
 	public int getMaxSmokestacks() {
-		return (int)this.getAttributeValue(AileronAttributes.SMOKESTACK_CHARGES);
+		return (int)this.getAttributeValue(AileronAttributes.MAX_SMOKESTACKS);
 	}
 
 	@Override
 	public int getSmokeStacks() {
-		return this.getAttachedOrCreate(AileronAttachments.SMOKESTACKS, this::getMaxSmokestacks);
+		return this.getAttachedOrCreate(AileronAttachments.SMOKESTACKS, () -> 0);
 	}
 
 	@Override
@@ -254,6 +257,10 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AileronP
 		this.setAttached(AileronAttachments.SMOKESTACKS, stacks);
 	}
 
+	@Override
+	public boolean isWearingElytra() {
+		return this.getEquippedStack(EquipmentSlot.BODY).getItem() instanceof ElytraItem;
+	}
 
 	@Override
 	public boolean charged() {
@@ -276,12 +283,12 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AileronP
 	}
 
 	@Override
-	public int getCampfireDamageIFrames() {
+	public int getCampfireDamageInvulnerability() {
 		return campfireDamageIFrames;
 	}
 
 	@Override
-	public void setCampfireDamageIFrames(int campfireDamageIFrames) {
+	public void setCampfireDamageInvulnerability(int campfireDamageIFrames) {
 		this.campfireDamageIFrames = campfireDamageIFrames;
 	}
 

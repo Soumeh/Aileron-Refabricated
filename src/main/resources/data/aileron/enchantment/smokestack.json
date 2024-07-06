@@ -18,7 +18,7 @@
 					"base": 1,
 					"per_level_above_first": 1
 				},
-				"attribute": "aileron:smokestack_charges",
+				"attribute": "aileron:max_smokestacks",
 				"id": "aileron:enchantment.smokestack",
 				"operation": "add_value"
 			}

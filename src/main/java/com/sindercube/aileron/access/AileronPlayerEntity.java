@@ -1,8 +1,14 @@
 package com.sindercube.aileron.access;
 
+import com.sindercube.aileron.content.packets.SmokeStackDashPacket;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+
 import java.util.function.UnaryOperator;
 
 public interface AileronPlayerEntity {
+
+	default void smokeStackDash(SmokeStackDashPacket packet, ServerPlayNetworking.Context context) {}
+
 
 	default int getMaxSmokestacks() {
 		return 0;
@@ -19,6 +25,11 @@ public interface AileronPlayerEntity {
 	}
 
 
+	default boolean isWearingElytra() {
+		return false;
+	}
+
+
 	default boolean charged() {
 		return false;
 	}
@@ -31,11 +42,11 @@ public interface AileronPlayerEntity {
 
 	default void setSmokeTrailTicks(int boostTicks) {}
 
-	default int getCampfireDamageIFrames() {
+	default int getCampfireDamageInvulnerability() {
 		return 0;
 	}
 
-	default void setCampfireDamageIFrames(int campfireDamageIFrames) {}
+	default void setCampfireDamageInvulnerability(int campfireDamageIFrames) {}
 
 	default boolean canChargeSmokeStack() {
 		return false;

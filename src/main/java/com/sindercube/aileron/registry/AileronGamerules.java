@@ -9,8 +9,11 @@ public class AileronGamerules {
     public static void init() {}
 
 
-    public static final GameRules.Key<GameRules.BooleanRule> FIREWORK_BOOST =
-            register("fireworkBoosts", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(false));
+    public static final GameRules.Key<GameRules.BooleanRule> FIREWORK_BOOSTS_FLIGHT =
+            register("fireworkBoostsFlight", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(false));
+
+    public static final GameRules.Key<GameRules.IntRule> FIREWORK_BOOST_COOLDOWN =
+            register("fireworkBoostCooldown", GameRules.Category.MOBS, GameRuleFactory.createIntRule(200));
 
     public static final GameRules.Key<GameRules.BooleanRule> CAMPFIRES_PUSH_PLAYERS =
             register("campfiresPushPlayers", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));

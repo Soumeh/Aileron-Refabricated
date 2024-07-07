@@ -1,6 +1,6 @@
 package com.sindercube.aileron.client.mixin;
 
-import com.sindercube.aileron.client.AileronClient;
+import com.sindercube.aileron.client.AileronControls;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.KeyBinding;
 import org.spongepowered.asm.mixin.Final;
@@ -14,10 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GameOptionsMixin {
 
     @Shadow @Final public KeyBinding jumpKey;
+    @Shadow @Final public KeyBinding sneakKey;
 
     @Inject(method = "<init>", at = @At("TAIL"))
     public void tick(CallbackInfo ci) {
-        AileronClient.JUMP_KEY = jumpKey;
+        AileronControls.JUMP_KEY = jumpKey;
+        AileronControls.SNEAK_KEY = sneakKey;
     }
 
 }

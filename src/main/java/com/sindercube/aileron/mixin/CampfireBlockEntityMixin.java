@@ -1,13 +1,18 @@
 package com.sindercube.aileron.mixin;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.entity.CampfireBlockEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
@@ -43,5 +48,40 @@ public class CampfireBlockEntityMixin {
 				0, 0.005, 0
 		);
 	}
+
+
+
+
+	/**
+	 * @author Sindercube
+	 * @reason Distance-based smoke rendering
+	 */
+//	@Overwrite
+//	public static void clientTick(World world, BlockPos pos, BlockState state, CampfireBlockEntity campfire) {
+//		Random random = world.random;
+//		int i;
+//		if (random.nextFloat() < 0.11F) {
+//			for(i = 0; i < random.nextInt(2) + 2; ++i) {
+//				CampfireBlock.spawnSmokeParticle(world, pos, state.get(CampfireBlock.SIGNAL_FIRE), false);
+//			}
+//		}
+//
+//		i = ((Direction)state.get(CampfireBlock.FACING)).getHorizontal();
+//
+//		for(int j = 0; j < campfire.itemsBeingCooked.size(); ++j) {
+//			if (!((ItemStack)campfire.itemsBeingCooked.get(j)).isEmpty() && random.nextFloat() < 0.2F) {
+//				Direction direction = Direction.fromHorizontal(Math.floorMod(j + i, 4));
+//				float f = 0.3125F;
+//				double d = (double)pos.getX() + 0.5 - (double)((float)direction.getOffsetX() * 0.3125F) + (double)((float)direction.rotateYClockwise().getOffsetX() * 0.3125F);
+//				double e = (double)pos.getY() + 0.5;
+//				double g = (double)pos.getZ() + 0.5 - (double)((float)direction.getOffsetZ() * 0.3125F) + (double)((float)direction.rotateYClockwise().getOffsetZ() * 0.3125F);
+//
+//				for(int k = 0; k < 4; ++k) {
+//					world.addParticle(ParticleTypes.SMOKE, d, e, g, 0.0, 5.0E-4, 0.0);
+//				}
+//			}
+//		}
+//
+//	}
 
 }

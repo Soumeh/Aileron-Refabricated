@@ -1,6 +1,6 @@
 package com.sindercube.aileron;
 
-import com.sindercube.aileron.registry.AileronAttachments;
+import com.sindercube.aileron.registry.AileronEntityData;
 import com.sindercube.aileron.registry.AileronAttributes;
 import com.sindercube.aileron.registry.AileronGamerules;
 import net.fabricmc.api.ModInitializer;
@@ -22,10 +22,8 @@ public class Aileron implements ModInitializer {
 	public void onInitialize() {
 		AileronConfig.HANDLER.load();
 
-		AileronAttachments.init();
 		AileronAttributes.init();
 		AileronGamerules.init();
-		AileronNetworking.register();
 
 		LOGGER.info("Initialized!");
 	}

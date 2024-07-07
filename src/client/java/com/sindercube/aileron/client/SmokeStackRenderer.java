@@ -8,14 +8,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 
-public class SmokestackRenderer {
+public class SmokeStackRenderer {
 
-    public record SmokestackIcon (
+    public record SmokeStackIcon (
             Identifier containerTexture,
             Identifier fullTexture
     ) {
 
-        public static final SmokestackIcon DEFAULT = new SmokestackIcon(
+        public static final SmokeStackIcon DEFAULT = new SmokeStackIcon(
             Aileron.of("hud/smokestack/container"),
             Aileron.of("hud/smokestack/full")
         );
@@ -36,14 +36,14 @@ public class SmokestackRenderer {
 
         int screenY = screenHeight - 10;
 
-        for (int i = 0; i < player.getMaxSmokestacks(); i++) {
+        for (int i = 0; i < player.getMaxSmokeStacks(); i++) {
             int spriteY = screenY - (i * 9);
-            context.drawGuiTexture(SmokestackIcon.DEFAULT.containerTexture, screenX, spriteY, 9, 9);
+            context.drawGuiTexture(SmokeStackIcon.DEFAULT.containerTexture, screenX, spriteY, 9, 9);
         }
 
         for (int i = 0; i < player.getSmokeStacks(); i++) {
             int spriteY = screenY - (i * 9);
-            context.drawGuiTexture(SmokestackIcon.DEFAULT.fullTexture, screenX, spriteY, 9, 9);
+            context.drawGuiTexture(SmokeStackIcon.DEFAULT.fullTexture, screenX, spriteY, 9, 9);
         }
 
     }

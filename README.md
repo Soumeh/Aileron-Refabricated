@@ -1,11 +1,5 @@
-# Aileron
-![Mod Loader: All Of Them](https://img.shields.io/badge/loader-Forge%2C%20Fabric%2C%20and%20Quilt-1976d2?style=flat-square&color=orange&logo=CodeIgniter&labelColor=0d1117)
-<a href="https://discord.gg/4J2ZM6T8nT">
-  <img alt="Discord" src="https://img.shields.io/discord/950771581787983912?color=informational&label=discord&logo=discord&style=flat-square&logoColor=white&labelColor=0d1117">
-</a>
-<br>
-<br>
-Aileron is a unique overhaul to Minecraft's Elytra, adding new enchantments and behaviours while rebalancing some of it's existing behavior to be better suited for multiplayer gameplay.
+# About
+**Aileron Refabricated** is a **Fabric** exclusive rewrite of the original **Aileron** mod, a unique overhaul to Minecraft's Elytra, adding new enchantments and behaviours while rebalancing some of it's existing behavior to be better suited for multiplayer gameplay.
 
 ## Mechanics
 ### Camera Tilt

@@ -1,6 +1,5 @@
 {
 	"required": true,
-	"plugin": "com.moulberry.mixinconstraints.ConstraintsMixinPlugin",
 	"package": "com.sindercube.aileron.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [

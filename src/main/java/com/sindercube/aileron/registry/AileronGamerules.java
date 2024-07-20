@@ -15,8 +15,8 @@ public class AileronGamerules {
     public static final GameRules.Key<GameRules.IntRule> FIREWORK_BOOST_COOLDOWN =
             register("fireworkBoostCooldown", GameRules.Category.MOBS, GameRuleFactory.createIntRule(200));
 
-    public static final GameRules.Key<GameRules.BooleanRule> CAMPFIRES_PUSH_PLAYERS =
-            register("campfiresPushPlayers", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
+    public static final GameRules.Key<GameRules.BooleanRule> CAMPFIRES_UPDRAFTS =
+            register("campfireUpdrafts", GameRules.Category.MOBS, GameRuleFactory.createBooleanRule(true));
 
     public static final GameRules.Key<GameRules.IntRule> SMOKE_STACK_CHARGE_TICKS =
             register("smokeStackChargeTicks", GameRules.Category.MOBS, GameRuleFactory.createIntRule(20));

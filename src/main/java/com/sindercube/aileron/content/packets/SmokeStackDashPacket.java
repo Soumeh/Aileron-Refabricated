@@ -19,7 +19,7 @@ public class SmokeStackDashPacket implements CustomPayload {
     public static final PacketCodec<RegistryByteBuf, SmokeStackDashPacket> PACKET_CODEC = PacketCodec.unit(INSTANCE);
 
 
-    private static final int BOOST_TICKS = 50;
+    private static final int BOOST_TICKS = 40;
     private static final int COOLDOWN = 60;
 
     public void dash(ServerPlayNetworking.Context context) {
@@ -28,7 +28,7 @@ public class SmokeStackDashPacket implements CustomPayload {
         if (player.getSmokeStackDashCooldown() > 0) return;
         if (player.getSmokeStacks() <= 0) return;
 
-        player.modifySmokeStacks(stacks -> stacks - 1);
+        player.removeSmokeStack();
         player.setFlightBoostTicks(BOOST_TICKS);
         player.setSmokeStackDashCooldown(COOLDOWN);
     }

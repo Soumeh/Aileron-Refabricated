@@ -1,4 +1,4 @@
-package com.sindercube.aileron.client;
+package com.sindercube.aileron.client.handler;
 
 import com.sindercube.aileron.Aileron;
 import net.minecraft.client.MinecraftClient;

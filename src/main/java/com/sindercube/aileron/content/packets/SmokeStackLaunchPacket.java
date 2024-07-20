@@ -29,9 +29,7 @@ public class SmokeStackLaunchPacket implements CustomPayload {
         if (!player.isCampfireCharged()) return;
 
         ServerWorld world = context.player().getServerWorld();
-        player.setCampfireCharged(false);
         player.setCampfireChargeTime(0);
-        player.setCampfireIFrames(20);
 
         player.startFallFlying();
         player.setFlightBoostTicks(50);

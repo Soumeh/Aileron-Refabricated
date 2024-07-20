@@ -1,9 +1,9 @@
 {
-  "attribute.aileron.max_smokestacks": "Smokestack Charges",
-  "attribute.aileron.altitude_drag_reduction": "Altitude Drag Resistance",
+	"attribute.aileron.max_smokestacks": "Smokestack Charges",
+	"attribute.aileron.altitude_drag_reduction": "Altitude Drag Resistance",
 
-  "enchantment.aileron.smokestack": "Smokestack",
-  "enchantment.aileron.smokestack.desc": "Allows elytra boosts from campfires to be stored for later use.",
-  "enchantment.aileron.cloudskipper": "Cloudskipper",
-  "enchantment.aileron.cloudskipper.desc": "Reduces horizontal elytra drag while above the cloud layer."
+	"enchantment.aileron.smokestack": "Smokestack",
+	"enchantment.aileron.smokestack.desc": "Allows Elytra boosts from Campfires to be stored for later use",
+	"enchantment.aileron.cloudskipper": "Cloudskipper",
+	"enchantment.aileron.cloudskipper.desc": "Reduces horizontal Elytra drag while above the cloud layer"
 }

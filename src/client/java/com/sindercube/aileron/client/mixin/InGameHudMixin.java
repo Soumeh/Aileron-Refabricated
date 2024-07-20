@@ -1,6 +1,6 @@
 package com.sindercube.aileron.client.mixin;
 
-import com.sindercube.aileron.client.SmokeStackRenderer;
+import com.sindercube.aileron.client.handler.SmokeStackRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;

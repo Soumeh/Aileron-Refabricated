@@ -1,8 +1,9 @@
 package com.sindercube.aileron.access;
 
-import java.util.function.UnaryOperator;
-
 public interface AileronPlayerEntity {
+
+	// TODO (maybe) replace with world.getGameRules().getInt(AileronGamerules.SMOKE_STACK_CHARGE_TICKS);
+	int CHARGE_TICKS = 30;
 
 	default int getMaxSmokeStacks() {
 		return 0;
@@ -12,8 +13,11 @@ public interface AileronPlayerEntity {
 		return 0;
 	}
 	default void setSmokeStacks(int stacks) {}
-	default void modifySmokeStacks(UnaryOperator<Integer> function) {
-		setSmokeStacks(function.apply(getSmokeStacks()));
+	default void addSmokeStack() {
+		setSmokeStacks(getSmokeStacks() + 1);
+	}
+	default void removeSmokeStack() {
+		setSmokeStacks(getSmokeStacks() - 1);
 	}
 
 	default int getSmokeStackDashCooldown() {
@@ -21,26 +25,30 @@ public interface AileronPlayerEntity {
 	}
 	default void setSmokeStackDashCooldown(int cooldown) {}
 
-	default boolean isCampfireCharged() {
-		return false;
+	default int getSmokeTrailTicks() {
+		return 0;
 	}
-	default void setCampfireCharged(boolean charged) {}
+	default void setSmokeTrailTicks(int boostTicks) {}
 
+	default boolean isCampfireCharged() {
+		return getCampfireChargeTime() >= CHARGE_TICKS;
+	}
 	default int getCampfireChargeTime() {
 		return 0;
 	}
 	default void setCampfireChargeTime(int time) {}
-	default void modifyCampfireChargeTime(UnaryOperator<Integer> function) {
-		setCampfireChargeTime(function.apply(getCampfireChargeTime()));
+	default void incrementCampfireChargeTime() {
+		setCampfireChargeTime(getCampfireChargeTime() + 1);
 	}
 
-	default void setFlightBoostTicks(int flightBoostTicks) {}
-	default void setSmokeTrailTicks(int boostTicks) {}
-	default void setFlyingTimer(int timer) {}
-
-	default int getCampfireIFrames() {
+	default int getFlightBoostTicks() {
 		return 0;
 	}
-	default void setCampfireIFrames(int frames) {}
+	default void setFlightBoostTicks(int flightBoostTicks) {}
+
+	default int getFlyingTimer() {
+		return 0;
+	}
+	default void setFlyingTimer(int timer) {}
 
 }

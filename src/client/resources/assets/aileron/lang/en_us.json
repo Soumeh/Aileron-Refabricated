@@ -1,4 +1,6 @@
 {
+	"config.aileron.campfire_charge_ticks": "Campfire Charge Ticks",
+
 	"attribute.aileron.max_smokestacks": "Smokestack Charges",
 	"attribute.aileron.altitude_drag_reduction": "Altitude Drag Resistance",
 

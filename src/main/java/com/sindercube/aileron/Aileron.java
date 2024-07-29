@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 public class Aileron implements ModInitializer {
 
 	public static final String MOD_ID = "aileron";
-	public static final Logger LOGGER = LoggerFactory.getLogger("Manic");
+	public static final Logger LOGGER = LoggerFactory.getLogger("Aileron");
 
 	public static Identifier of(String path) {
 		return Identifier.of(MOD_ID, path);
@@ -19,8 +19,11 @@ public class Aileron implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		AileronConfig.init(MOD_ID, AileronConfig.class);
+
 		AileronAttributes.init();
 		AileronGamerules.init();
+
 		LOGGER.info("Initialized!");
 	}
 

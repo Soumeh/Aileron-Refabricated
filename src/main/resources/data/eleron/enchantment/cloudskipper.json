@@ -1,0 +1,40 @@
+{
+	"description": {
+		"translate": "enchantment.eleron.cloudskipper"
+	},
+
+	"exclusive_set": "eleron:smokestack",
+
+	"slots": [ "chest" ],
+	"supported_items": "#minecraft:enchantable/elytra",
+
+	"max_level": 1,
+
+	"effects": {
+		"minecraft:attributes": [
+			{
+				"amount": {
+					"type": "minecraft:linear",
+					"base": 1,
+					"per_level_above_first": 1
+				},
+				"attribute": "eleron:altitude_drag_reduction",
+				"id": "eleron:enchantment.cloudskipper",
+				"operation": "add_value"
+			}
+		]
+	},
+
+	"weight": 2,
+
+	"anvil_cost": 2,
+	"max_cost": {
+		"base": 65,
+		"per_level_above_first": 9
+	},
+	"min_cost": {
+		"base": 15,
+		"per_level_above_first": 9
+	}
+
+}

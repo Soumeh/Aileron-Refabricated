@@ -1,40 +1,40 @@
 {
 	"schemaVersion": 1,
-	"id": "aileron",
+	"id": "eleron",
 	"version": "${version}",
-	"name": "Aileron",
-	"description": "A unique and expansive Elytra overhaul",
+	"name": "Eleron",
+	"description": "A Fabric rewrite of Aileron, an overhaul to Minecraft's Elytra",
 	"authors": [
 		"Sindercube",
 		"Team Lodestar"
 	],
 	"contact": {
 		"homepage": "https://github.com/Sindercube",
-		"sources": "https://github.com/Sindercube/Aileron-Refabricated",
-		"issues": "https://github.com/Sindercube/Aileron-Refabricated/issues"
+		"sources": "https://github.com/Sindercube/Eleron",
+		"issues": "https://github.com/Sindercube/Eleron/issues"
 	},
-	"license": " LGPL-3.0",
+	"license": "LGPL-3.0",
 
 	"entrypoints": {
 		"main": [
-			"com.sindercube.aileron.Aileron"
+			"com.sindercube.eleron.Eleron"
 		],
 		"client": [
-			"com.sindercube.aileron.client.AileronClient"
+			"com.sindercube.eleron.client.EleronClient"
 		]
 	},
 	"mixins": [
-		"aileron.mixins.json",
+		"eleron.mixins.json",
 		{
-			"config": "aileron.client.mixins.json",
+			"config": "eleron.client.mixins.json",
 			"environment": "client"
 		}
 	],
-	"accessWidener": "aileron.accesswidener",
+	"accessWidener": "eleron.accesswidener",
 
 	"custom": {
 		"loom:injected_interfaces": {
-			"net/minecraft/class_1657": [ "com/sindercube/aileron/access/AileronPlayerEntity" ]
+			"net/minecraft/class_1657": [ "com/sindercube/eleron/access/EleronPlayerEntity" ]
 		}
 	},
 

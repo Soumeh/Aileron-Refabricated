@@ -1,18 +1,17 @@
+![Game Versions](https://img.shields.io/modrinth/game-versions/zSqjq7Lw?style=for-the-badge&labelColor=434956&color=ba2aa4)
+![Latest Release](https://img.shields.io/github/v/tag/Sindercube/Eleron?style=for-the-badge&label=Latest%20Release&color=ba2aa4)
+
+[![Github](https://img.shields.io/badge/github-434956?style=for-the-badge&logo=github&logoColor=ba2aa4)](https://github.com/Sindercube/Server-Unpacker)
+[![Modrinth](https://img.shields.io/badge/modrinth-434956?style=for-the-badge&logo=modrinth&logoColor=ba2aa4)](https://modrinth.com/mod/Server-Unpacker)
+[![Curseforge](https://img.shields.io/badge/curseforge-434956?style=for-the-badge&logo=curseforge&logoColor=ba2aa4)](https://www.curseforge.com/minecraft/mc-mods/Server-Unpacker)
+
 # About
-**Aileron Refabricated** is a **Fabric** exclusive rewrite of the original **Aileron** mod, a unique overhaul to Minecraft's Elytra, adding new enchantments and behaviours while rebalancing some of it's existing behavior to be better suited for multiplayer gameplay.
+**Eleron** is a **Fabric rewrite** of the **[Aileron](https://modrinth.com/mod/aileron)** mod, an overhaul to Minecraft's Elytra,adding new enchantments and behaviours while rebalancing some of it's existing behavior to be better suited for multiplayer gameplay.
 
 ## Mechanics
-### Camera Tilt
-The player's camera tilts while rapidly turning at high velocities.
 
 ### Updraft Boosting
 Campfire smoke boosts players upward when flying over it with an Elytra.
-
-### Updraft Launching
-Players may crouch on a campfire with an Elytra equipped for one second to launch vertically into the air when released.
-
-### Campfire Stacking
-Campfire smoke travels higher depending on how many other campfires are adjacent to the source campfire.
 
 ### Firework Contrails
 Fireworks may no longer be used for speed boosts - they instead leaving a lingering trail, purely for cosmetic purposes.

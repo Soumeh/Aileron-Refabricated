@@ -1,0 +1,54 @@
+package com.sindercube.eleron.content.packet;
+
+import com.sindercube.eleron.Eleron;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.network.packet.CustomPayload;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.Vec3d;
+
+public class SmokeStackLaunchPacket implements CustomPayload {
+
+    public static final SmokeStackLaunchPacket INSTANCE = new SmokeStackLaunchPacket();
+    public static final Id<SmokeStackLaunchPacket> ID = new Id<>(Eleron.of("smokestack_dash"));
+    public static final PacketCodec<RegistryByteBuf, SmokeStackLaunchPacket> PACKET_CODEC = PacketCodec.unit(INSTANCE);
+
+    @Override
+    public Id<? extends CustomPayload> getId() {
+        return ID;
+    }
+
+
+    public void launch(ServerPlayNetworking.Context context) {
+        PlayerEntity player = context.player();
+        if (player.isFallFlying()) return;
+        if (player.getSmokeStacks() == 0) return;
+
+        player.startFallFlying();
+
+//        Vec3d direction = player.getRotationVector().multiply(0.1D).add(player.getRotationVector().multiply(1.5D).subtract(player.getVelocity()).multiply(0.5));
+//
+//        Vec3d rotation = player.getRotationVector();
+//        Vec3d velocity = player.getVelocity();
+//        player.addVelocity(
+//                rotation.x * 0.1D + (rotation.x * 1.5D - velocity.x) * 0.5D,
+//                rotation.y * 0.1D + (rotation.y * 1.5D - velocity.y) * 0.5D,
+//                rotation.z * 0.1D + (rotation.z * 1.5D - velocity.z) * 0.5D
+//        );
+        player.setFlightBoostTicks(50);
+        player.checkFallFlying();
+        player.setFlyingTimer(2);
+
+        ServerWorld world = context.player().getServerWorld();
+        Vec3d pos = player.getPos();
+        world.spawnParticles(ParticleTypes.LARGE_SMOKE, pos.x, pos.y, pos.z, 40, 0.5, 0.5, 0.5, 0.1);
+        world.spawnParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, pos.x, pos.y, pos.z, 40, 0.5, 0.5, 0.5, 0.1);
+        world.spawnParticles(ParticleTypes.SMOKE, pos.x, pos.y, pos.z, 120, 0.5, 0.5, 0.5, 0.4);
+        player.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 0.8f, 0.8f);
+    }
+
+}

@@ -1,0 +1,11 @@
+{
+	"config.eleron.campfire_charge_ticks": "Campfire Charge Ticks",
+
+	"attribute.eleron.max_smokestacks": "Smokestack Charges",
+	"attribute.eleron.altitude_drag_reduction": "Altitude Drag Resistance",
+
+	"enchantment.eleron.smokestack": "Smokestack",
+	"enchantment.eleron.smokestack.desc": "Allows Elytra boosts from Campfires to be stored for later use",
+	"enchantment.eleron.cloudskipper": "Cloudskipper",
+	"enchantment.eleron.cloudskipper.desc": "Reduces horizontal drag while flying above the cloud layer"
+}

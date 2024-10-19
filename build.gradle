@@ -1,10 +1,11 @@
 plugins {
-    id "fabric-loom" version "1.7-SNAPSHOT"
+    id "fabric-loom" version "1.8-SNAPSHOT"
     id "maven-publish"
 }
 
-base { archivesName = mod_id }
+base.archivesName = mod_id
 version = mod_version
+group = mod_group
 
 repositories {
     maven {
@@ -15,20 +16,17 @@ repositories {
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings "net.fabricmc:yarn:${minecraft_version}+${yarn_mappings}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}+${minecraft_version}"
+    mappings "net.fabricmc:yarn:${yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     modImplementation "maven.modrinth:midnightlib:${midnightlib_version}"
-
-    modLocalRuntime "maven.modrinth:modmenu:${modmenu_version}"
-    modLocalRuntime "maven.modrinth:sodium:mc${minecraft_version}-${sodium_version}"
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/${mod_id}.accesswidener")
+    accessWidenerPath = file("src/main/resources/eleron.accesswidener")
     splitEnvironmentSourceSets()
     mods {
-        "${mod_id}" {
+        eleron {
             sourceSet sourceSets.main
             sourceSet sourceSets.client
         }
@@ -41,20 +39,5 @@ loom {
 processResources {
     filesMatching("fabric.mod.json") {
         expand project.properties
-    }
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
-}
-
-afterEvaluate {
-    loom.runs.configureEach {
-        vmArg "-javaagent:${ configurations.compileClasspath.find { it.name.contains("sponge-mixin") } }"
-        property "mixin.debug.export=true"
     }
 }

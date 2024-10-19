@@ -1,11 +1,7 @@
 pluginManagement {
     repositories {
-        maven {
-            url 'https://maven.fabricmc.net/'
-            content { includeGroup "net.fabricmc" }
-            content { includeGroup "fabric-loom" }
-        }
+        maven { url 'https://maven.fabricmc.net/' }
         mavenCentral()
     }
 }
-rootProject.name = 'Aileron Refabricated'
+rootProject.name = 'Eleron'

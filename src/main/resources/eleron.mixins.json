@@ -4,8 +4,9 @@
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
 		"CampfireBlockMixin",
-		"LivingEntityMixin",
+		"ElytraItemMixin",
 		"FireworkRocketItemMixin",
+		"LivingEntityMixin",
 		"PlayerEntityMixin"
 	],
 	"injectors": {

@@ -69,7 +69,6 @@ public class EntityHandler {
         if (world.isClient) return;
         if (!player.isFallFlying() || player.isMainPlayer()) return;
 //        if (!player.isFallFlying()) return;
-        System.out.println("test");
 
         BlockPos pos = player.getBlockPos();
         int depth = 0;

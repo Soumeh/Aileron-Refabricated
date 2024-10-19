@@ -3,11 +3,9 @@
 		"translate": "enchantment.eleron.smokestack"
 	},
 
-	"exclusive_set": "eleron:cloudskipper",
-
-	"slots": [ "chest" ],
+	"slots": [ "armor" ],
 	"supported_items": "#minecraft:enchantable/elytra",
-
+	"exclusive_set": "#eleron:exclusive_set/smokestack",
 	"max_level": 3,
 
 	"effects": {
@@ -25,8 +23,7 @@
 		]
 	},
 
-	"weight": 2,
-
+	"weight": 3,
 	"anvil_cost": 2,
 	"max_cost": {
 		"base": 65,
@@ -36,5 +33,4 @@
 		"base": 15,
 		"per_level_above_first": 9
 	}
-
 }

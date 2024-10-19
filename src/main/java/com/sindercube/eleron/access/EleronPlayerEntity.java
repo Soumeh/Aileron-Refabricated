@@ -16,7 +16,7 @@ public interface EleronPlayerEntity {
 	default void addSmokeStack() {
 		setSmokeStacks(getSmokeStacks() + 1);
 	}
-	default void removeSmokeStack() {
+	default void useSmokeStack() {
 		setSmokeStacks(getSmokeStacks() - 1);
 	}
 

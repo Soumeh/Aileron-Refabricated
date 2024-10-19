@@ -24,11 +24,11 @@ public class SmokeStackDashPacket implements CustomPayload {
 
     public void dash(ServerPlayNetworking.Context context) {
         PlayerEntity player = context.player();
-        if (!player.isFallFlying()) return;
         if (player.getSmokeStackDashCooldown() > 0) return;
         if (player.getSmokeStacks() <= 0) return;
+		if (player.getFallFlyingTicks() <= 10) return;
 
-        player.removeSmokeStack();
+		player.useSmokeStack();
         player.setFlightBoostTicks(BOOST_TICKS);
         player.setSmokeStackDashCooldown(COOLDOWN);
     }

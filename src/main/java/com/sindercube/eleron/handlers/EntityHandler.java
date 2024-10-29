@@ -4,12 +4,14 @@ import com.sindercube.eleron.registry.EleronAttributes;
 import com.sindercube.eleron.registry.EleronGamerules;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CampfireBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -19,29 +21,65 @@ public class EntityHandler {
     public static final int MAX_DEPTH = 32;
 
 
+	public static void tickCampfireCharging(World world, PlayerEntity player) {
+		if (world.isClient) return;
+		if (player.getMaxSmokestackCharges() <= 0) return;
+		if (!player.getSteppingBlockState().isIn(BlockTags.CAMPFIRES)) {
+			player.setCampfireChargeTime(0);
+			return;
+		}
+
+		player.tickCampfireChargeTime();
+		int chargeTime = player.getCampfireChargeTime();
+		if (chargeTime % world.getGameRules().getInt(EleronGamerules.SMOKESTACK_CHARGE_TICKS) != 0) return;
+
+		int stacks = player.getSmokestackCharges();
+		int maxStacks = player.getMaxSmokestackCharges();
+		if (stacks >= maxStacks) return;
+
+		player.addSmokestackCharge();
+
+		final ServerWorld serverWorld = (ServerWorld) world;
+		Vec3d pos = player.getPos();
+		serverWorld.spawnParticles(ParticleTypes.LARGE_SMOKE, pos.x, pos.y, pos.z, 20, 0.5, 0.5, 0.5, 0.1);
+		serverWorld.spawnParticles(ParticleTypes.SMOKE, pos.x, pos.y, pos.z, 100, 0.5, 0.5, 0.5, 0.4);
+		player.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 0.8f, 0.8f + stacks * 0.2f);
+	}
+
     public static void tickSmokeTrial(World world, PlayerEntity player) {
         if (!player.isFallFlying()) player.setSmokeTrailTicks(0);
 
         if (player.getSmokeTrailTicks() <= 0) return;
 
-        if (player.age % 3 == 0) {
+        if (player.age % 3 == 0 && !world.isClient) {
             final ServerWorld serverWorld = (ServerWorld) world;
             Vec3d pos = player.getPos().add(player.getRotationVector().multiply(-1.0));
             serverWorld.spawnParticles(ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, pos.x, pos.y, pos.z, 2, 0.1, 0.1, 0.1, 0.005);
         }
     }
 
-    public static void tickFlyingTimer(World world, PlayerEntity player) {
-        if (player.getFlyingTimer() == 0 && !world.isClient) {
-            player.setFlyingTimer(-1);
-            player.startFallFlying();
-        }
-    }
+	public static void tickSmokestackChargeDecay(World world, PlayerEntity player) {
+		if (world.isClient) return;
+
+		if (player.isOnGround() && player.getCampfireChargeTime() == 0) {
+			player.setSmokestackCharges(0);
+			return;
+		}
+
+		if (player.getSmokestackCharges() >= player.getMaxSmokestackCharges())
+			player.setSmokestackCharges(player.getMaxSmokestackCharges());
+
+
+//		System.out.println(player.getCampfireChargeTime());
+//		if (player.getCampfireChargeTime() > 0) return;
+//		if (player.isFallFlying()) return;
+//		player.setSmokestackCharges(0);
+	}
 
     public static void tickFlightBoost(World world, PlayerEntity player) {
         if (player.getFlightBoostTicks() <= 0) return;
         if (!player.isFallFlying()) {
-            player.setFlightBoostTicks(0);
+			player.setFlightBoostTicks(0);
             return;
         }
 

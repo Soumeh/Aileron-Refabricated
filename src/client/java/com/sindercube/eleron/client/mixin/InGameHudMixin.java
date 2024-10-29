@@ -1,6 +1,6 @@
 package com.sindercube.eleron.client.mixin;
 
-import com.sindercube.eleron.client.handler.SmokeStackGuiRenderer;
+import com.sindercube.eleron.client.SmokeStackHudRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
@@ -24,7 +24,7 @@ public class InGameHudMixin {
 			index = 1
 	)
 	private int moveAttackIndicatorBackground(int spriteX) {
-		return SmokeStackGuiRenderer.moveAttackIndicator(spriteX);
+		return SmokeStackHudRenderer.moveAttackIndicator(spriteX);
 	}
 
 	@ModifyArg(
@@ -43,7 +43,7 @@ public class InGameHudMixin {
 			index = 5
 	)
 	private int moveAttackIndicator(int spriteX) {
-		return SmokeStackGuiRenderer.moveAttackIndicator(spriteX);
+		return SmokeStackHudRenderer.moveAttackIndicator(spriteX);
 	}
 
 }

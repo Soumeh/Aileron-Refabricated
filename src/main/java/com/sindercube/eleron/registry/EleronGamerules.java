@@ -8,21 +8,20 @@ public class EleronGamerules {
 
     public static void init() {}
 
+    public static final GameRules.Key<GameRules.BooleanRule> FIREWORK_BOOSTS_FLIGHT = register("fireworkBoostsFlight",
+		GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(false)
+	);
+    public static final GameRules.Key<GameRules.IntRule> FIREWORK_BOOST_COOLDOWN = register("fireworkBoostCooldown",
+		GameRules.Category.PLAYER, GameRuleFactory.createIntRule(200)
+	);
+    public static final GameRules.Key<GameRules.BooleanRule> CAMPFIRES_UPDRAFTS = register("campfireUpdrafts",
+		GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(true)
+	);
+    public static final GameRules.Key<GameRules.IntRule> SMOKESTACK_CHARGE_TICKS = register("smokestackChargeTicks",
+		GameRules.Category.PLAYER, GameRuleFactory.createIntRule(30)
+	);
 
-    public static final GameRules.Key<GameRules.BooleanRule> FIREWORK_BOOSTS_FLIGHT =
-            register("fireworkBoostsFlight", GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(false));
-
-    public static final GameRules.Key<GameRules.IntRule> FIREWORK_BOOST_COOLDOWN =
-            register("fireworkBoostCooldown", GameRules.Category.PLAYER, GameRuleFactory.createIntRule(200));
-
-    public static final GameRules.Key<GameRules.BooleanRule> CAMPFIRES_UPDRAFTS =
-            register("campfireUpdrafts", GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(true));
-
-    public static final GameRules.Key<GameRules.IntRule> SMOKE_STACK_CHARGE_TICKS =
-            register("smokeStackChargeTicks", GameRules.Category.PLAYER, GameRuleFactory.createIntRule(20));
-
-
-    private static <T extends GameRules.Rule<T>> GameRules.Key<T> register(String name, GameRules.Category category, GameRules.Type<T> type) {
+    public static <T extends GameRules.Rule<T>> GameRules.Key<T> register(String name, GameRules.Category category, GameRules.Type<T> type) {
         return GameRuleRegistry.register(name, category, type);
     }
 

@@ -41,8 +41,7 @@
 	"depends": {
 		"java": ">=21",
 		"minecraft": "${minecraft_version}",
-		"fabric-api": ">=${fabric_version}",
-		"midnightlib": ">=${midnightlib_version}"
+		"fabric-api": ">=${fabric_version}"
 	},
 
 	"suggests": {

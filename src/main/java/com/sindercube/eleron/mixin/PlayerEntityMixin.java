@@ -22,8 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity implements EleronPlayerEntity {
 
-	@SuppressWarnings("all")
-	@Unique private static final TrackedData<Integer> SMOKE_STACKS = DataTracker.registerData(PlayerEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	@Unique private static final TrackedData<Integer> SMOKESTACK_CHARGES = DataTracker.registerData(PlayerEntityMixin.class, TrackedDataHandlerRegistry.INTEGER);
 
 	protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
 		super(entityType, world);
@@ -33,7 +32,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements EleronPl
 	@Unique private int smokeTrailTicks = 0;
 	@Unique private int campfireChargeTime = 0;
 	@Unique private int flightBoostTicks = 0;
-	@Unique private int flyingTimer = 0;
 
 	@Inject(method = "tick", at = @At("TAIL"))
 	public void postTick(CallbackInfo ci) {
@@ -43,10 +41,10 @@ public abstract class PlayerEntityMixin extends LivingEntity implements EleronPl
 		if (smokeStackDashCooldown > 0) smokeStackDashCooldown--;
 		if (smokeTrailTicks > 0) smokeTrailTicks--;
 		if (flightBoostTicks > 0) flightBoostTicks--;
-		if (flyingTimer > 0) flyingTimer--;
 
+		EntityHandler.tickCampfireCharging(world, self);
 		EntityHandler.tickSmokeTrial(world, self);
-		EntityHandler.tickFlyingTimer(world, self);
+		EntityHandler.tickSmokestackChargeDecay(world, self);
 		EntityHandler.tickFlightBoost(world, self);
 		EntityHandler.tickCampfireUpdrafts(world, self);
 	}
@@ -56,48 +54,48 @@ public abstract class PlayerEntityMixin extends LivingEntity implements EleronPl
 	private static void addDefaultAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
 		DefaultAttributeContainer.Builder builder = cir.getReturnValue();
 		builder = builder
-				.add(EleronAttributes.MAX_SMOKESTACKS, 0)
+				.add(EleronAttributes.MAX_SMOKESTACK_CHARGES, 0)
 				.add(EleronAttributes.ALTITUDE_DRAG_REDUCTION, 0);
 		cir.setReturnValue(builder);
 	}
 
 	@Inject(method = "initDataTracker", at = @At("TAIL"))
 	public void addCustomData(DataTracker.Builder builder, CallbackInfo ci) {
-		builder.add(SMOKE_STACKS, 0);
+		builder.add(SMOKESTACK_CHARGES, 0);
 	}
 
 	@Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
 	public void readCustomData(NbtCompound nbt, CallbackInfo ci) {
-		if (nbt.contains("smoke_stacks"))
-			setSmokeStacks(nbt.getInt("smoke_stacks"));
+		if (nbt.contains("smokestack_charges"))
+			setSmokestackCharges(nbt.getInt("smokestack_charges"));
 	}
 
 	@Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
 	public void writeCustomData(NbtCompound nbt, CallbackInfo ci) {
-		nbt.putInt("smoke_stacks", getSmokeStacks());
+		nbt.putInt("smokestack_charges", getSmokestackCharges());
 	}
 
 
 	@Override
-	public int getMaxSmokeStacks() {
-		return (int) getAttributeValue(EleronAttributes.MAX_SMOKESTACKS);
+	public int getMaxSmokestackCharges() {
+		return (int) getAttributeValue(EleronAttributes.MAX_SMOKESTACK_CHARGES);
 	}
 
 	@Override
-	public int getSmokeStacks() {
-		return dataTracker.get(SMOKE_STACKS);
+	public int getSmokestackCharges() {
+		return dataTracker.get(SMOKESTACK_CHARGES);
 	}
 	@Override
-	public void setSmokeStacks(int stacks) {
-		dataTracker.set(SMOKE_STACKS, stacks);
+	public void setSmokestackCharges(int stacks) {
+		dataTracker.set(SMOKESTACK_CHARGES, stacks);
 	}
 
 	@Override
-	public int getSmokeStackDashCooldown() {
+	public int getSmokestackChargeCooldown() {
 		return smokeStackDashCooldown;
 	}
 	@Override
-	public void setSmokeStackDashCooldown(int cooldown) {
+	public void setSmokestackChargeCooldown(int cooldown) {
 		this.smokeStackDashCooldown = cooldown;
 	}
 
@@ -126,15 +124,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements EleronPl
 	@Override
 	public void setFlightBoostTicks(int ticks) {
 		this.flightBoostTicks = ticks;
-	}
-
-	@Override
-	public int getFlyingTimer() {
-		return flyingTimer;
-	}
-	@Override
-	public void setFlyingTimer(int timer) {
-		this.flyingTimer = timer;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.sindercube.eleron.client.handler;
+package com.sindercube.eleron.client;
 
 import com.sindercube.eleron.Eleron;
 import net.minecraft.client.MinecraftClient;
@@ -8,27 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 
-public class SmokeStackGuiRenderer {
-
-    public record SmokeStackIcon (
-            Identifier containerTexture,
-            Identifier fullTexture
-    ) {
-
-        public static final SmokeStackIcon DEFAULT = new SmokeStackIcon(
-            Eleron.of("hud/smokestack/container"),
-            Eleron.of("hud/smokestack/full")
-        );
-
-        public void drawContainer(DrawContext context, int x, int y) {
-            context.drawGuiTexture(containerTexture, x, y, 9, 9);
-        }
-
-        public void drawFull(DrawContext context, int x, int y) {
-            context.drawGuiTexture(fullTexture, x, y, 9, 9);
-        }
-
-    }
+public class SmokeStackHudRenderer {
 
     public static void renderSmokeStackBar(DrawContext context, RenderTickCounter t) {
         PlayerEntity player = MinecraftClient.getInstance().player;
@@ -45,14 +25,14 @@ public class SmokeStackGuiRenderer {
         int screenY = screenHeight - 10;
         SmokeStackIcon icon = SmokeStackIcon.DEFAULT;
 
-        for (int i = 0; i < player.getMaxSmokeStacks(); i++) {
+        for (int i = 0; i < player.getMaxSmokestackCharges(); i++) {
             int spriteY = screenY - (i * 9);
-            icon.drawContainer(context, screenX, spriteY);
+			context.drawGuiTexture(icon.containerTexture, screenX, spriteY, 9, 9);
         }
 
-        for (int i = 0; i < player.getSmokeStacks(); i++) {
+        for (int i = 0; i < player.getSmokestackCharges(); i++) {
             int spriteY = screenY - (i * 9);
-            icon.drawFull(context, screenX, spriteY);
+			context.drawGuiTexture(icon.fullTexture, screenX, spriteY, 9, 9);
         }
     }
 
@@ -65,5 +45,18 @@ public class SmokeStackGuiRenderer {
             case RIGHT -> spriteX + 5;
         };
     }
+
+
+	public record SmokeStackIcon (
+		Identifier containerTexture,
+		Identifier fullTexture
+	) {
+
+		public static final SmokeStackIcon DEFAULT = new SmokeStackIcon(
+			Eleron.of("hud/smokestack/default/container"),
+			Eleron.of("hud/smokestack/default/full")
+		);
+
+	}
 
 }

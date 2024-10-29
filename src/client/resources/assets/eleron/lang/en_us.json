@@ -1,7 +1,7 @@
 {
 	"config.eleron.campfire_charge_ticks": "Campfire Charge Ticks",
 
-	"attribute.eleron.max_smokestacks": "Smokestack Charges",
+	"attribute.eleron.max_smokestack_charges": "Smokestack Charges",
 	"attribute.eleron.altitude_drag_reduction": "Altitude Drag Resistance",
 
 	"enchantment.eleron.smokestack": "Smokestack",

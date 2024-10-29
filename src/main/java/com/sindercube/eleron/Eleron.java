@@ -3,6 +3,7 @@ package com.sindercube.eleron;
 import com.sindercube.eleron.registry.EleronAttributes;
 import com.sindercube.eleron.registry.EleronGamerules;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.effect.StatusEffects;
@@ -22,12 +23,10 @@ public class Eleron implements ModInitializer {
 		return Identifier.of(MOD_ID, path);
 	}
 
-
 	@Override
 	public void onInitialize() {
 		EleronAttributes.init();
 		EleronGamerules.init();
-
 		LOGGER.info("Initialized!");
 	}
 

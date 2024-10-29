@@ -11,17 +11,14 @@ public class EleronAttributes {
 
     public static void init() {}
 
-
-    public static final RegistryEntry<EntityAttribute> MAX_SMOKESTACKS = registerReference("max_smokestacks",
-            new ClampedEntityAttribute("attribute.eleron.max_smokestacks", 0, 0, 1024)
+    public static final RegistryEntry<EntityAttribute> MAX_SMOKESTACK_CHARGES = registerReference("max_smokestack_charges",
+            new ClampedEntityAttribute("attribute.eleron.max_smokestack_charges", 0, 0, 1024)
                     .setTracked(true)
     );
-
     public static final RegistryEntry<EntityAttribute> ALTITUDE_DRAG_REDUCTION = registerReference("altitude_drag_reduction",
             new ClampedEntityAttribute("attribute.eleron.altitude_drag_reduction", 0, 0, 1024)
                     .setTracked(true)
     );
-
 
     public static RegistryEntry<EntityAttribute> registerReference(String path, EntityAttribute attribute) {
         return Registry.registerReference(Registries.ATTRIBUTE, Eleron.of(path), attribute);

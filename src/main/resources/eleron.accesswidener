@@ -1,1 +1,6 @@
 accessWidener v2 named
+
+accessible field eu/midnightdust/lib/config/MidnightConfig$EntryInfo modid Ljava/lang/String;
+accessible field eu/midnightdust/lib/config/MidnightConfig$EntryInfo field Ljava/lang/reflect/Field;
+accessible field eu/midnightdust/lib/config/MidnightConfig$EntryInfo error Lnet/minecraft/text/Text;
+

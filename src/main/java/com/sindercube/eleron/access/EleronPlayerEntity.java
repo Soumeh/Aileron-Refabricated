@@ -2,28 +2,25 @@ package com.sindercube.eleron.access;
 
 public interface EleronPlayerEntity {
 
-	// TODO (maybe) replace with world.getGameRules().getInt(EleronGamerules.SMOKE_STACK_CHARGE_TICKS);
-	int CHARGE_TICKS = 30;
-
-	default int getMaxSmokeStacks() {
+	default int getMaxSmokestackCharges() {
 		return 0;
 	}
 
-	default int getSmokeStacks() {
+	default int getSmokestackCharges() {
 		return 0;
 	}
-	default void setSmokeStacks(int stacks) {}
-	default void addSmokeStack() {
-		setSmokeStacks(getSmokeStacks() + 1);
+	default void setSmokestackCharges(int stacks) {}
+	default void addSmokestackCharge() {
+		setSmokestackCharges(getSmokestackCharges() + 1);
 	}
-	default void useSmokeStack() {
-		setSmokeStacks(getSmokeStacks() - 1);
+	default void useSmokestackCharge() {
+		setSmokestackCharges(getSmokestackCharges() - 1);
 	}
 
-	default int getSmokeStackDashCooldown() {
+	default int getSmokestackChargeCooldown() {
 		return 0;
 	}
-	default void setSmokeStackDashCooldown(int cooldown) {}
+	default void setSmokestackChargeCooldown(int cooldown) {}
 
 	default int getSmokeTrailTicks() {
 		return 0;
@@ -34,7 +31,7 @@ public interface EleronPlayerEntity {
 		return 0;
 	}
 	default void setCampfireChargeTime(int time) {}
-	default void increaseCampfireChargeTime() {
+	default void tickCampfireChargeTime() {
 		setCampfireChargeTime(getCampfireChargeTime() + 1);
 	}
 
@@ -42,10 +39,5 @@ public interface EleronPlayerEntity {
 		return 0;
 	}
 	default void setFlightBoostTicks(int flightBoostTicks) {}
-
-	default int getFlyingTimer() {
-		return 0;
-	}
-	default void setFlyingTimer(int timer) {}
 
 }

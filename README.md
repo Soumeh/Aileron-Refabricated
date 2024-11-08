@@ -1,27 +1,41 @@
+![Game Versions](https://img.shields.io/modrinth/game-versions/zSqjq7Lw?style=for-the-badge&labelColor=434956&color=ba2aa4)
+![Latest Release](https://img.shields.io/github/v/tag/Sindercube/Eleron?style=for-the-badge&label=Latest%20Release&labelColor=434956&color=ba2aa4)
+
 # About
-**Eleron** is a **Fabric rewrite** of the **[Aileron](https://modrinth.com/mod/aileron)** mod, an overhaul to Minecraft's Elytra.
+**Eleron** is a **Fabric 1.21+** rewrite of the **[Aileron](https://modrinth.com/mod/aileron)** mod, an overhaul to Minecraft's Elytra.
 
-It adds new enchantments and behaviours while rebalancing some of it's existing behavior to be better suited for multiplayer gameplay
+It adds new behaviours and enchantments while rebalancing some of it's existing behavior to be better suited for multiplayer.
 
-# Features
+## Features
 
-## Updraft Boosting
-Campfire smoke boosts players upward when flying over it with an Elytra.
+### Campfire Updrafts
+Campfire smoke boosts players upward when flying over it.
 
-## Firework Contrails
-Fireworks may no longer be used for speed boosts - they instead leave a lingering trail, purely for cosmetic purposes.
+### Firework Contrails
+Fireworks now leave a lingering trail of smoke, purely for cosmetic purposes.
+> The old firework behaviour can be enabled with the `fireworkBoostsFlight` gamerule.
 
-## Enchantments
+### Elytra Enchantments
+Elytra can now be enchanted in the Enchanting Table.
 
-- Smokestack
-> Allows the player to store boosts while crouching on campfires, consuming them with the jump key while flying for a burst of speed. One maximum boost may be stored per level, capping at 3.
-Incompatible with Cloudskipper.
+The Unbreaking enchantment can be found by default.
 
-- Cloudskipper
-> Horizontal drag is reduced depending on the player's altitude, allowing them to glide for much longer and at much higher speeds while above the cloud layer.
-Incompatible with Smokestack.
+#### Smokestack
+Allows the player to charge up boosts while crouching on Campfires.
 
-# Credits
+Smokestack boosts can be used while flying for a burst of speed.
 
-- Thank you to [Team Lodestar](https://github.com/LodestarMC) for creating the original mod and inspiring the creation of this one.
+Adds one maximum boost per level. Maximum level is 3.
 
+> The default key for boosting is `Space`.
+
+> Incompatible with Cloudskipper.
+
+#### Cloudskipper
+Horizontal drag is reduced while above the cloud layer.
+
+> Incompatible with Smokestack.
+
+### Elytra Bouncing (Experimental)
+Bounce off the ground while flying to build up momentum.
+> Disabled by default, can be enabled with the `doElytraBounce` gamerule.

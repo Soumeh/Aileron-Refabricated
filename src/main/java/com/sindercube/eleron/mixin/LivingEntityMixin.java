@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
@@ -30,36 +29,14 @@ public abstract class LivingEntityMixin extends Entity {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 	@Unique private int ticksOnGround = 0;
 	@Unique private boolean wasGoodBefore = false;
 
 	@ModifyArg(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setFlag(IZ)V"), index = 1)
 	private boolean updateTravel(boolean isOnGround) {
-		if (ticksOnGround <= 1) return true;
+		if (ticksOnGround <= 2) return true;
 		return isOnGround;
 	}
-
-//	@Inject(method = "tickFallFlying", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setFlag(IZ)V", shift = At.Shift.AFTER))
-//	private void updateFallFlying(CallbackInfo ci, @Local boolean flag) {
-//		if (getWorld().getGameRules().getBoolean(EleronGamerules.DO_ELYTRA_BOUNCE) && !flag && this.isOnGround()) {
-//			ticksOnGround++;
-//			this.setFlag(7, true);
-//		} else {
-//			ticksOnGround = 0;
-//		}
-//	}
 
 	@Inject(method = "tickFallFlying", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setFlag(IZ)V", shift = At.Shift.AFTER))
 	private void updateFallFlying(CallbackInfo ci, @Local boolean flag) {

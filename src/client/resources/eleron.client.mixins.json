@@ -3,7 +3,9 @@
 	"package": "com.sindercube.eleron.client.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"client": [
-		"InGameHudMixin"
+		"InGameHudMixin",
+		"KeyBindingEntryMixin",
+		"KeyBindingMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

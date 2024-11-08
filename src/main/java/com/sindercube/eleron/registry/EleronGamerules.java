@@ -8,6 +8,9 @@ public class EleronGamerules {
 
     public static void init() {}
 
+	public static final GameRules.Key<GameRules.BooleanRule> DO_ELYTRA_BOUNCE = register("doElytraBounce",
+		GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(false)
+	);
     public static final GameRules.Key<GameRules.BooleanRule> FIREWORK_BOOSTS_FLIGHT = register("fireworkBoostsFlight",
 		GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(false)
 	);

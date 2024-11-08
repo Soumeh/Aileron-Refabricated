@@ -2,14 +2,6 @@ on:
   release:
     types: [published]
 
-concurrency:
-  group: "build"
-  cancel-in-progress: true
-
-env:
-  MODRINTH_ID: "${{ vars.MODRINTH_ID }}"
-  CURSEFORGE_ID: "${{ vars.CURSEFORGE_ID }}"
-
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -29,10 +21,10 @@ jobs:
       - name: Publish
         uses: Kir-Antipov/mc-publish@v3.3
         with:
-          curseforge-id: "${{ env.CURSEFORGE_ID }}"
+          curseforge-id: "${{ vars.CURSEFORGE_ID }}"
           curseforge-token: "${{ secrets.CURSEFORGE_TOKEN }}"
           curseforge-version-type: "${{ steps.get-release.outputs.release-type }}"
-          modrinth-id: "${{ env.MODRINTH_ID }}"
+          modrinth-id: "${{ vars.MODRINTH_ID }}"
           modrinth-token: "${{ secrets.MODRINTH_TOKEN }}"
           modrinth-version-type: "${{ steps.get-release.outputs.release-type }}"
           github-tag: "${{ github.event.release.tag_name }}"

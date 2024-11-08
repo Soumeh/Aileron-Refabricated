@@ -1,8 +1,6 @@
 package com.sindercube.eleron.content.packet;
 
 import com.sindercube.eleron.Eleron;
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.RegistryByteBuf;
@@ -12,6 +10,7 @@ import net.minecraft.network.packet.CustomPayload;
 public class SmokeStackBoostPacket implements CustomPayload {
 
 	public static final CustomPayload.Id<SmokeStackBoostPacket> ID = new CustomPayload.Id<>(Eleron.of("smokestack_boost"));
+
 	@Override
     public CustomPayload.Id<? extends CustomPayload> getId() {
         return ID;

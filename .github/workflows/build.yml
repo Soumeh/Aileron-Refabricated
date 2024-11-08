@@ -40,5 +40,5 @@ jobs:
 
           name: "${{ github.event.release.name }}"
           version: "${{ github.event.release.tag_name }}"
-          version-type: "${{ github.event.release.prerelease && 'beta' || 'release' }}"
+          version-type: ${{ github.event.release.prerelease && 'beta' || 'release' }}
           changelog: "${{ github.event.release.body }}"

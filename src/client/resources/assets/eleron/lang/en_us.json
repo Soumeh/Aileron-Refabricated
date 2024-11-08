@@ -7,5 +7,9 @@
 	"enchantment.eleron.smokestack": "Smokestack",
 	"enchantment.eleron.smokestack.desc": "Allows Elytra boosts from Campfires to be stored for later use",
 	"enchantment.eleron.cloudskipper": "Cloudskipper",
-	"enchantment.eleron.cloudskipper.desc": "Reduces horizontal drag while flying above the cloud layer"
+	"enchantment.eleron.cloudskipper.desc": "Reduces horizontal drag while flying above the cloud layer",
+
+	"key.eleron.categories.movement": "Eleron Movement",
+	"key.eleron.close_elytra": "Close Elytra",
+	"key.eleron.smokestack_boost": "Smokestack Boost"
 }

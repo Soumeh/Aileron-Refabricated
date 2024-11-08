@@ -61,7 +61,7 @@ public class EntityHandler {
 	public static void tickSmokestackChargeDecay(World world, PlayerEntity player) {
 		if (world.isClient) return;
 
-		if (player.isOnGround() && player.getCampfireChargeTime() == 0) {
+		if (player.isOnGround() && !player.isFallFlying() && player.getCampfireChargeTime() == 0) {
 			player.setSmokestackCharges(0);
 			return;
 		}

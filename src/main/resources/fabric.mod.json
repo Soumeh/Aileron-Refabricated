@@ -24,8 +24,6 @@
 			"environment": "client"
 		}
 	],
-	"accessWidener": "eleron.accesswidener",
-
 	"custom": {
 		"loom:injected_interfaces": {
 			"net/minecraft/class_1657": [ "com/sindercube/eleron/access/EleronPlayerEntity" ]
@@ -33,8 +31,6 @@
 	},
 
 	"depends": {
-		"java": ">=21",
-		"minecraft": "${minecraft_version}",
-		"fabric-api": ">=${fabric_version}"
+		"fabric-api": "*"
 	}
 }

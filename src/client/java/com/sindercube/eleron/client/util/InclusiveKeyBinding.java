@@ -1,6 +1,7 @@
 package com.sindercube.eleron.client.util;
 
 import com.google.common.collect.Maps;
+import com.sindercube.eleron.client.mixin.KeyBindingAccessor;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 
@@ -15,18 +16,19 @@ public class InclusiveKeyBinding extends KeyBinding {
 
 	public static InclusiveKeyBinding create(String translationKey, InputUtil.Type type, int code, String category) {
 		InputUtil.Key key = type.createFromCode(code);
-		KeyBinding oldKeybind = KeyBinding.KEY_TO_BINDINGS.get(key);
+		KeyBinding oldKeybind = KeyBindingAccessor.getKeyToBindings().get(key);
 		return new InclusiveKeyBinding(translationKey, type, code, category, oldKeybind);
 	}
 
 	protected InclusiveKeyBinding(String translationKey, InputUtil.Type type, int code, String category, KeyBinding oldKeybind) {
 		super(translationKey, type, code, category);
+		InputUtil.Key key = ((KeyBindingAccessor)this).getBoundKey();
 
-		KeyBinding.KEY_TO_BINDINGS.put(this.boundKey, oldKeybind);
-		if (!KEY_TO_MULTIPLE_BINDINGS.containsKey(this.boundKey)) KEY_TO_MULTIPLE_BINDINGS.put(this.boundKey, new ArrayList<>());
-		KEY_TO_MULTIPLE_BINDINGS.get(this.boundKey).add(this);
+		KeyBindingAccessor.getKeyToBindings().put(key, oldKeybind);
+		if (!KEY_TO_MULTIPLE_BINDINGS.containsKey(key)) KEY_TO_MULTIPLE_BINDINGS.put(key, new ArrayList<>());
+		KEY_TO_MULTIPLE_BINDINGS.get(key).add(this);
 
-		KeyBinding.KEYS_BY_ID.remove(translationKey);
+		KeyBindingAccessor.getKeysById().remove(translationKey);
 		UNIQUE_KEYS_BY_ID.put(translationKey, this);
 	}
 

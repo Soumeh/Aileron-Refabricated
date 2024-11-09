@@ -11,5 +11,8 @@
 
 	"key.eleron.categories.movement": "Eleron Movement",
 	"key.eleron.close_elytra": "Close Elytra",
-	"key.eleron.smokestack_boost": "Smokestack Boost"
+	"key.eleron.smokestack_boost": "Smokestack Boost",
+
+	"subtitles.entity.player.smokestack_charge.gained": "Smokestack charge gained",
+	"subtitles.entity.player.smokestack_charge.used": "Smokestack charge used"
 }

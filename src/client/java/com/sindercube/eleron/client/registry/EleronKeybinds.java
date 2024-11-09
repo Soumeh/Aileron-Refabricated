@@ -2,7 +2,7 @@ package com.sindercube.eleron.client.registry;
 
 import com.sindercube.eleron.client.util.InclusiveKeyBinding;
 import com.sindercube.eleron.content.packet.ElytraClosePacket;
-import com.sindercube.eleron.content.packet.SmokeStackBoostPacket;
+import com.sindercube.eleron.content.packet.SmokeStackChargePacket;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -17,7 +17,7 @@ public class EleronKeybinds {
 
 	public static void init() {
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-			if (!WAS_SMOKESTACK_BOOST_PRESSED && SMOKESTACK_BOOST.isPressed()) ClientPlayNetworking.send(SmokeStackBoostPacket.INSTANCE);
+			if (!WAS_SMOKESTACK_BOOST_PRESSED && SMOKESTACK_BOOST.isPressed()) ClientPlayNetworking.send(SmokeStackChargePacket.INSTANCE);
 			WAS_SMOKESTACK_BOOST_PRESSED = SMOKESTACK_BOOST.isPressed();
 
 			if (WAS_CLOSE_ELYTRA_PRESSED && !CLOSE_ELYTRA.isPressed()) ClientPlayNetworking.send(ElytraClosePacket.INSTANCE);

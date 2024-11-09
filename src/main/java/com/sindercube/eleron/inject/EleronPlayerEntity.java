@@ -1,4 +1,4 @@
-package com.sindercube.eleron.access;
+package com.sindercube.eleron.inject;
 
 public interface EleronPlayerEntity {
 

@@ -1,0 +1,14 @@
+{
+	"entity.player.smokestack_charge.gained": {
+		"sounds": [
+			"mob/ghast/fireball4"
+		],
+		"subtitle": "subtitles.entity.player.smokestack_charge.gained"
+	},
+	"entity.player.smokestack_charge.used": {
+		"sounds": [
+			"mob/ghast/fireball4"
+		],
+		"subtitle": "subtitles.entity.player.smokestack_charge.used"
+	}
+}

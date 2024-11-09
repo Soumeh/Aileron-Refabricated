@@ -1,5 +1,5 @@
-![Game Versions](https://img.shields.io/modrinth/game-versions/zSqjq7Lw?style=for-the-badge&labelColor=434956&color=ba2aa4)
-![Latest Release](https://img.shields.io/github/v/tag/Sindercube/Eleron?style=for-the-badge&label=Latest%20Release&labelColor=434956&color=ba2aa4)
+![Game Versions](https://img.shields.io/modrinth/game-versions/zSqjq7Lw?style=for-the-badge&color=ff6600)
+![Latest Release](https://img.shields.io/github/v/tag/Sindercube/Eleron?style=for-the-badge&label=Latest%20Release&color=ff6600)
 
 # About
 **Eleron** is a **Fabric 1.21+** rewrite of the **[Aileron](https://modrinth.com/mod/aileron)** mod, an overhaul to Minecraft's Elytra.

@@ -1,6 +1,6 @@
 package com.sindercube.eleron.mixin;
 
-import com.sindercube.eleron.access.EleronPlayerEntity;
+import com.sindercube.eleron.inject.EleronPlayerEntity;
 import com.sindercube.eleron.handlers.EntityHandler;
 import com.sindercube.eleron.registry.EleronAttributes;
 import net.minecraft.entity.EntityType;

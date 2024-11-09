@@ -26,7 +26,7 @@
 	],
 	"custom": {
 		"loom:injected_interfaces": {
-			"net/minecraft/class_1657": [ "com/sindercube/eleron/access/EleronPlayerEntity" ]
+			"net/minecraft/class_1657": [ "com/sindercube/eleron/inject/EleronPlayerEntity" ]
 		}
 	},
 

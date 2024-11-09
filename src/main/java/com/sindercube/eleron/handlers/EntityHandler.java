@@ -2,15 +2,16 @@ package com.sindercube.eleron.handlers;
 
 import com.sindercube.eleron.registry.EleronAttributes;
 import com.sindercube.eleron.registry.EleronGamerules;
+import com.sindercube.eleron.registry.EleronSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CampfireBlock;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -22,7 +23,6 @@ public class EntityHandler {
 
 
 	public static void tickCampfireCharging(World world, PlayerEntity player) {
-		if (world.isClient) return;
 		if (player.getMaxSmokestackCharges() <= 0) return;
 		if (!player.getSteppingBlockState().isIn(BlockTags.CAMPFIRES)) {
 			player.setCampfireChargeTime(0);
@@ -32,18 +32,29 @@ public class EntityHandler {
 		player.tickCampfireChargeTime();
 		int chargeTime = player.getCampfireChargeTime();
 		if (chargeTime % world.getGameRules().getInt(EleronGamerules.SMOKESTACK_CHARGE_TICKS) != 0) return;
+		giveSmokestackCharge(world, player);
+	}
 
+	public static void giveSmokestackCharge(World world, PlayerEntity player) {
 		int stacks = player.getSmokestackCharges();
 		int maxStacks = player.getMaxSmokestackCharges();
 		if (stacks >= maxStacks) return;
 
 		player.addSmokestackCharge();
-
-		final ServerWorld serverWorld = (ServerWorld) world;
-		Vec3d pos = player.getPos();
-		serverWorld.spawnParticles(ParticleTypes.LARGE_SMOKE, pos.x, pos.y, pos.z, 20, 0.5, 0.5, 0.5, 0.1);
-		serverWorld.spawnParticles(ParticleTypes.SMOKE, pos.x, pos.y, pos.z, 100, 0.5, 0.5, 0.5, 0.4);
-		player.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 0.8f, 0.8f + stacks * 0.2f);
+		player.getWorld().playSound(
+			player,
+			player.getBlockPos(),
+			EleronSoundEvents.SMOKESTACK_CHARGE_GAINED,
+			SoundCategory.PLAYERS,
+			1,
+			0.8f + (player.getSmokestackCharges() * 0.2f)
+		);
+		if (!world.isClient) {
+			final ServerWorld serverWorld = (ServerWorld) world;
+			Vec3d pos = player.getPos();
+			serverWorld.spawnParticles(ParticleTypes.LARGE_SMOKE, pos.x, pos.y, pos.z, 20, 0.5, 0.5, 0.5, 0.1);
+			serverWorld.spawnParticles(ParticleTypes.SMOKE, pos.x, pos.y, pos.z, 100, 0.5, 0.5, 0.5, 0.4);
+		}
 	}
 
     public static void tickSmokeTrial(World world, PlayerEntity player) {

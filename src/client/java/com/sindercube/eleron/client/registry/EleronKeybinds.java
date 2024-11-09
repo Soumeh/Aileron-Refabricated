@@ -6,15 +6,23 @@ import com.sindercube.eleron.content.packet.SmokeStackBoostPacket;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 
 public class EleronKeybinds {
 
+	private static boolean WAS_SMOKESTACK_BOOST_PRESSED = false;
+	private static boolean WAS_CLOSE_ELYTRA_PRESSED = false;
+
 	public static void init() {
-		ClientTickEvents.END_CLIENT_TICK.register(EleronKeybinds::handleSmokestackBoost);
+		ClientTickEvents.END_CLIENT_TICK.register(client -> {
+			if (!WAS_SMOKESTACK_BOOST_PRESSED && SMOKESTACK_BOOST.isPressed()) ClientPlayNetworking.send(SmokeStackBoostPacket.INSTANCE);
+			WAS_SMOKESTACK_BOOST_PRESSED = SMOKESTACK_BOOST.isPressed();
+
+			if (WAS_CLOSE_ELYTRA_PRESSED && !CLOSE_ELYTRA.isPressed()) ClientPlayNetworking.send(ElytraClosePacket.INSTANCE);
+			WAS_CLOSE_ELYTRA_PRESSED = CLOSE_ELYTRA.isPressed();
+		});
 	}
 
 	public static final KeyBinding SMOKESTACK_BOOST = KeyBindingHelper.registerKeyBinding(InclusiveKeyBinding.create(
@@ -29,15 +37,5 @@ public class EleronKeybinds {
 		GLFW.GLFW_KEY_LEFT_SHIFT,
 		"key.eleron.categories.movement"
 	));
-
-	private static boolean WAS_KEYBIND_PRESSED = false;
-
-	public static void handleSmokestackBoost(MinecraftClient client) {
-		if (!WAS_KEYBIND_PRESSED && SMOKESTACK_BOOST.isPressed()) ClientPlayNetworking.send(SmokeStackBoostPacket.INSTANCE);
-		WAS_KEYBIND_PRESSED = SMOKESTACK_BOOST.isPressed();
-
-		if (CLOSE_ELYTRA.isPressed()) ClientPlayNetworking.send(ElytraClosePacket.INSTANCE);
-	}
-
 
 }

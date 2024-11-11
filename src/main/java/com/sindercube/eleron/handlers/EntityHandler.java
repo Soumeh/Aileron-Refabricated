@@ -12,7 +12,6 @@ import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -53,7 +52,8 @@ public class EntityHandler {
 			final ServerWorld serverWorld = (ServerWorld) world;
 			Vec3d pos = player.getPos();
 			serverWorld.spawnParticles(ParticleTypes.LARGE_SMOKE, pos.x, pos.y, pos.z, 20, 0.5, 0.5, 0.5, 0.1);
-			serverWorld.spawnParticles(ParticleTypes.SMOKE, pos.x, pos.y, pos.z, 100, 0.5, 0.5, 0.5, 0.4);
+//			serverWorld.spawnParticles(ParticleTypes.SMOKE, pos.x, pos.y, pos.z, 100, 0.5, 0.5, 0.5, 0.4);
+			serverWorld.spawnParticles(ParticleTypes.FLAME, pos.x, pos.y, pos.z, 50, 0.5, 0.5, 0.5, 0.4);
 		}
 	}
 
@@ -154,7 +154,7 @@ public class EntityHandler {
     }
 
 
-    public static void modifyVelocity(LivingEntity entity, Vec3d velocity) {
+    public static void cloudskipperVelocityModifier(LivingEntity entity, Vec3d velocity) {
         World world = entity.getWorld();
         int dragReduction = (int)entity.getAttributeValue(EleronAttributes.ALTITUDE_DRAG_REDUCTION);
 

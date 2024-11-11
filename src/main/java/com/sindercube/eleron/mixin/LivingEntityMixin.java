@@ -25,7 +25,7 @@ public abstract class LivingEntityMixin extends Entity {
 
 	@Redirect(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setVelocity(Lnet/minecraft/util/math/Vec3d;)V", ordinal = 6))
 	private void modifyVelocity(LivingEntity entity, Vec3d velocity) {
-		EntityHandler.modifyVelocity(entity, velocity);
+		EntityHandler.cloudskipperVelocityModifier(entity, velocity);
 	}
 
 

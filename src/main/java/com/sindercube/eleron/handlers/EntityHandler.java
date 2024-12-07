@@ -170,10 +170,8 @@ public class EntityHandler {
 
         if (fac > 0.1 && !world.isClient && entity.age % ((int) (1.0 - fac) * 2 + 1) == 0) {
             ServerWorld serverWorld = (ServerWorld)world;
-            for (ServerPlayerEntity player : serverWorld.getPlayers()) {
-                Vec3d pos = entity.getPos().add(entity.getRotationVector().multiply(-1.0));
-                serverWorld.spawnParticles(player, ParticleTypes.POOF, false, pos.x, pos.y, pos.z, 1 + (int) (fac * 4.0), 0.1, 0.1, 0.1, 0.025);
-            }
+			Vec3d pos = entity.getPos().add(entity.getRotationVector().multiply(-1.0));
+			serverWorld.spawnParticles(ParticleTypes.POOF, false, true, pos.x, pos.y, pos.z, 1 + (int) (fac * 4.0), 0.1, 0.1, 0.1, 0.025);
         }
 
         Vec3d negator = new Vec3d(1.0 / 0.9900000095367432D, 1.0, 1.0 / 0.9900000095367432D);

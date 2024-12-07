@@ -7,14 +7,10 @@ import net.minecraft.client.render.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.TriState;
-import net.minecraft.util.Util;
-
-import java.util.function.Function;
 
 public class SmokeStackHudRenderer {
 
-    public static void renderSmokeStackBar(DrawContext context, RenderTickCounter t) {
+    public static void renderSmokeStackBar(DrawContext context, RenderTickCounter ignoredT) {
         PlayerEntity player = MinecraftClient.getInstance().player;
         if (player == null) return;
         if (player.isCreative()) return;

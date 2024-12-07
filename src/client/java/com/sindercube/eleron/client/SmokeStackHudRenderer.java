@@ -3,10 +3,14 @@ package com.sindercube.eleron.client;
 import com.sindercube.eleron.Eleron;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.RenderTickCounter;
+import net.minecraft.client.render.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.TriState;
+import net.minecraft.util.Util;
+
+import java.util.function.Function;
 
 public class SmokeStackHudRenderer {
 
@@ -27,20 +31,17 @@ public class SmokeStackHudRenderer {
 
         for (int i = 0; i < player.getMaxSmokestackCharges(); i++) {
             int spriteY = screenY - (i * 9);
-			context.drawGuiTexture(icon.containerTexture, screenX, spriteY, 9, 9);
+			context.drawGuiTexture(RenderLayer::getGuiTextured, icon.containerTexture, screenX, spriteY, 9, 9);
         }
 
         for (int i = 0; i < player.getSmokestackCharges(); i++) {
             int spriteY = screenY - (i * 9);
-			context.drawGuiTexture(icon.fullTexture, screenX, spriteY, 9, 9);
+			context.drawGuiTexture(RenderLayer::getGuiTextured, icon.fullTexture, screenX, spriteY, 9, 9);
         }
     }
 
-    public static int moveAttackIndicator(int spriteX) {
-        PlayerEntity player = MinecraftClient.getInstance().player;
-        if (player == null) return spriteX;
-
-        return switch (player.getMainArm()) {
+    public static int moveAttackIndicator(int spriteX, Arm arm) {
+        return switch (arm) {
             case LEFT -> spriteX - 9;
             case RIGHT -> spriteX + 5;
         };

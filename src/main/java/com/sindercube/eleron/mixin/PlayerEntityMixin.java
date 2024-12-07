@@ -11,6 +11,7 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -42,11 +43,14 @@ public abstract class PlayerEntityMixin extends LivingEntity implements EleronPl
 		if (smokeTrailTicks > 0) smokeTrailTicks--;
 		if (flightBoostTicks > 0) flightBoostTicks--;
 
-		EntityHandler.tickCampfireCharging(world, self);
 		EntityHandler.tickSmokeTrial(world, self);
 		EntityHandler.tickSmokestackChargeDecay(world, self);
 		EntityHandler.tickFlightBoost(world, self);
-		EntityHandler.tickCampfireUpdrafts(world, self);
+
+		if (world instanceof ServerWorld serverWorld) {
+			EntityHandler.tickCampfireCharging(serverWorld, self);
+			EntityHandler.tickCampfireUpdrafts(serverWorld, self);
+		}
 	}
 
 

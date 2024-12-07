@@ -30,7 +30,7 @@ public class SmokeStackChargePacket implements CustomPayload {
         if (player.getSmokestackChargeCooldown() > 0) return;
         if (player.getSmokestackCharges() <= 0) return;
 
-		if (player.getFallFlyingTicks() <= STARTUP_TIME) return;
+		if (player.getGlidingTicks() <= STARTUP_TIME) return;
 
 		player.useSmokestackCharge();
 		player.playSoundToPlayer(

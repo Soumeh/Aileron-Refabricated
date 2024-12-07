@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(CampfireBlock.class)
 public class CampfireBlockMixin {
 
-	@Inject(method = "onEntityCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"), cancellable = true)
+	@Inject(method = "onEntityCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;serverDamage(Lnet/minecraft/entity/damage/DamageSource;F)V"), cancellable = true)
 	private void protectWithSmokeStack(BlockState s, World w, BlockPos p, Entity entity, CallbackInfo ci) {
 		if (entity instanceof PlayerEntity player && player.isSneaking() && player.getMaxSmokestackCharges() >= 1) ci.cancel();
 	}

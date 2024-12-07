@@ -21,7 +21,7 @@ public class EntityHandler {
     public static final int MAX_DEPTH = 32;
 
 
-	public static void tickCampfireCharging(World world, PlayerEntity player) {
+	public static void tickCampfireCharging(ServerWorld world, PlayerEntity player) {
 		if (player.getMaxSmokestackCharges() <= 0) return;
 		if (!player.getSteppingBlockState().isIn(BlockTags.CAMPFIRES)) {
 			player.setCampfireChargeTime(0);
@@ -58,7 +58,7 @@ public class EntityHandler {
 	}
 
     public static void tickSmokeTrial(World world, PlayerEntity player) {
-        if (!player.isFallFlying()) player.setSmokeTrailTicks(0);
+        if (!player.isGliding()) player.setSmokeTrailTicks(0);
 
         if (player.getSmokeTrailTicks() <= 0) return;
 
@@ -72,7 +72,7 @@ public class EntityHandler {
 	public static void tickSmokestackChargeDecay(World world, PlayerEntity player) {
 		if (world.isClient) return;
 
-		if (player.isOnGround() && !player.isFallFlying() && player.getCampfireChargeTime() == 0) {
+		if (player.isOnGround() && !player.isGliding() && player.getCampfireChargeTime() == 0) {
 			player.setSmokestackCharges(0);
 			return;
 		}
@@ -89,7 +89,7 @@ public class EntityHandler {
 
     public static void tickFlightBoost(World world, PlayerEntity player) {
         if (player.getFlightBoostTicks() <= 0) return;
-        if (!player.isFallFlying()) {
+        if (!player.isGliding()) {
 			player.setFlightBoostTicks(0);
             return;
         }
@@ -114,9 +114,9 @@ public class EntityHandler {
         }
     }
 
-    public static void tickCampfireUpdrafts(World world, PlayerEntity player) {
+    public static void tickCampfireUpdrafts(ServerWorld world, PlayerEntity player) {
         if (world.isClient) return;
-        if (!player.isFallFlying() || player.isMainPlayer()) return;
+        if (!player.isGliding() || player.isMainPlayer()) return;
 //        if (!player.isFallFlying()) return;
 
         BlockPos pos = player.getBlockPos();

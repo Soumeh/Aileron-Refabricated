@@ -21,7 +21,7 @@ public class ElytraClosePacket implements CustomPayload {
 
 	public void closeElytra(ServerPlayNetworking.Context context) {
 		PlayerEntity player = context.player();
-		player.stopFallFlying();
+		player.stopGliding();
 	}
 
 }

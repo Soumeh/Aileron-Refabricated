@@ -20,7 +20,7 @@ public class EleronKeybinds {
 			if (!WAS_SMOKESTACK_BOOST_PRESSED && SMOKESTACK_BOOST.isPressed()) ClientPlayNetworking.send(SmokeStackChargePacket.INSTANCE);
 			WAS_SMOKESTACK_BOOST_PRESSED = SMOKESTACK_BOOST.isPressed();
 
-			if (WAS_CLOSE_ELYTRA_PRESSED && !CLOSE_ELYTRA.isPressed()) ClientPlayNetworking.send(ElytraClosePacket.INSTANCE);
+			if (!WAS_CLOSE_ELYTRA_PRESSED && CLOSE_ELYTRA.isPressed()) ClientPlayNetworking.send(ElytraClosePacket.INSTANCE);
 			WAS_CLOSE_ELYTRA_PRESSED = CLOSE_ELYTRA.isPressed();
 		});
 	}
@@ -34,7 +34,7 @@ public class EleronKeybinds {
 	public static final KeyBinding CLOSE_ELYTRA = KeyBindingHelper.registerKeyBinding(InclusiveKeyBinding.create(
 		"key.eleron.close_elytra",
 		InputUtil.Type.KEYSYM,
-		GLFW.GLFW_KEY_LEFT_SHIFT,
+		GLFW.GLFW_KEY_UNKNOWN,
 		"key.eleron.categories.movement"
 	));
 

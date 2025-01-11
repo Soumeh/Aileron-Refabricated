@@ -49,14 +49,11 @@ public abstract class PlayerEntityMixin extends LivingEntity implements EleronPl
 		EntityHandler.tickCampfireUpdrafts(world, self);
 	}
 
-
-	@Inject(method = "createPlayerAttributes", at = @At("RETURN"), cancellable = true)
+	@Inject(method = "createPlayerAttributes", at = @At("RETURN"))
 	private static void addDefaultAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
-		DefaultAttributeContainer.Builder builder = cir.getReturnValue();
-		builder = builder
-				.add(EleronAttributes.MAX_SMOKESTACK_CHARGES, 0)
-				.add(EleronAttributes.ALTITUDE_DRAG_REDUCTION, 0);
-		cir.setReturnValue(builder);
+		cir.getReturnValue()
+			.add(EleronAttributes.MAX_SMOKESTACK_CHARGES, 0)
+			.add(EleronAttributes.ALTITUDE_DRAG_REDUCTION, 0);
 	}
 
 	@Inject(method = "initDataTracker", at = @At("TAIL"))
